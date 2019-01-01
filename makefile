@@ -5,11 +5,11 @@ SOURCES = \
     scheme.ml \
     lexer.mll
 
-OCAMLBUILD = ocamlbuild -pkg alcotest
+OCAMLBUILD = ocamlbuild -tags afl_instrument -pkg alcotest
 
-default: byte
+default: fuzz
 
-all: byte native test
+all: byte native test fuzz
 
 byte:
 	$(OCAMLBUILD) $(TARGET).byte
@@ -19,6 +19,7 @@ native:
 
 test:
 	$(OCAMLBUILD) test.byte; ./test.byte
-
+fuzz:
+	$(OCAMLBUILD) fuzz.native;
 clean:
 	$(OCAMLBUILD) -clean
