@@ -94,6 +94,7 @@ let rec print x =
   match x with
     Nil -> print_string "nil"
   | Int i -> printf "int %d" i
+  | String s -> printf "string %s" s
   | Symbol s -> printf "symbol %s" s
   | Bool v -> printf "bool %s" (if v then "#t" else "#f")
   | Cons(car, cdr) -> printf "("; print car; printf " . "; print cdr; printf ")"
@@ -110,6 +111,7 @@ let rec _show x =
   match x with
     Nil -> printf "()"
   | Symbol s -> print_string s
+  | String s -> print_string s
   | Bool v -> print_string (if v then "#t" else "#f")
   | Int i -> print_int i
   | Cons(car, cdr) -> printf "("; _show_list x; printf ")"
