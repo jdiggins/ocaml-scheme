@@ -18,8 +18,7 @@ afl-fuzz -i input -o output ./fuzz.native
 let run_with input =
   Eval.init_env();
   let instr = input_line input in
-  let str = "(" ^ instr ^ ")" in
-  let e = Parser.expr Lexer.token (Lexing.from_string str) in
+  let e = Parser.expr Lexer.token (Lexing.from_string instr) in
   Type.show (eval e Env.global_env)
   
 let start_fuzzing() =
