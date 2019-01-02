@@ -5,7 +5,7 @@
 let var = ['a'-'z' 'A'-'Z']+
 
 rule token = parse
-         | [^"\"]             { STRING }
+         | [^'\"'][var]['\"'$]  { STRING }
          | [' ' '\t' '\r' '\n'] { token lexbuf }
          | ['0'-'9']+           { INT (int_of_string(Lexing.lexeme lexbuf)) }
          | "#t"               { TRUE }
