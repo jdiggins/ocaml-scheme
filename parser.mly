@@ -8,6 +8,7 @@
 %token LET
 %token DOT
 %token EOF
+%token <string>STRING
 
 %start expr
 %type <Type.expr> expr
@@ -20,6 +21,7 @@
 expr:
       INT                             { Type.Int($1) }
    |  SYMBOL                          { Type.Symbol($1) }
+   |  STRING                          { Type.String($1) }
    |  TRUE                            { Type.Bool true }
    |  FALSE                           { Type.Bool false }
    |  LPAREN IF expr expr expr RPAREN { Type.If($3, $4, $5) }
