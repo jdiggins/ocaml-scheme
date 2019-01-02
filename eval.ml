@@ -11,6 +11,7 @@ let rec eval exp env =
   if !is_debug then debug "eval" exp;
   match exp with
   | Nil | Int _ | Bool _  | Primitive _ -> exp
+  | String _ -> exp
   | Symbol s -> env_lookup !env s
   | Cons(e1, e2) -> (
     match e1 with
@@ -115,6 +116,9 @@ let eval_equal args env =
   let v1 = eval (car args) env and
       v2 = eval (car (cdr args)) env in
   if equal v1 v2 then Bool true else Bool false;;
+ 
+    
+  
 
 let eval_add args env =
   debug "eval_add:" args;
