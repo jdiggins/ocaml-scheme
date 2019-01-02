@@ -5,6 +5,7 @@ type expr =
   | Nil
   | Int of int
   | Symbol of string
+  | String of string
   | Bool of bool
   | Cons of expr * expr
   | If of expr * expr * expr
